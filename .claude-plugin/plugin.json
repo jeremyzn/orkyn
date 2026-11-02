@@ -1,0 +1,43 @@
+{
+  "name": "orkyn",
+  "description": "Équipe d'agents spécialisés pour Claude Code (architecte, développeur, chercheur, QA, relecteur, Roblox, mails en lecture seule), avec garde-fous de sécurité.",
+  "author": { "name": "jeremyzn" },
+  "license": "MIT",
+  "userConfig": {
+    "mail_provider": {
+      "type": "string",
+      "title": "Fournisseur de mail",
+      "description": "Fournisseur de la boîte à lire en lecture seule avec /orkyn inbox. Choisissez none pour désactiver les mails.",
+      "default": "none",
+      "options": ["none", "gmail", "icloud", "yahoo", "proton", "fastmail", "zoho", "gmx", "free", "laposte", "ovh", "ionos", "orange", "sfr", "autre"]
+    },
+    "mail_address": {
+      "type": "string",
+      "title": "Adresse mail",
+      "description": "Votre adresse mail complète (identifiant de connexion IMAP)."
+    },
+    "mail_password": {
+      "type": "string",
+      "title": "Mot de passe d'application",
+      "description": "Mot de passe d'application du fournisseur, ou mot de passe de Proton Mail Bridge. Jamais votre mot de passe principal.",
+      "sensitive": true
+    },
+    "mail_host": {
+      "type": "string",
+      "title": "Serveur IMAP (fournisseur autre)",
+      "description": "Seulement si le fournisseur est autre : nom du serveur IMAP, par exemple imap.exemple.com."
+    },
+    "mail_port": {
+      "type": "string",
+      "title": "Port IMAP (fournisseur autre)",
+      "description": "Seulement si le fournisseur est autre : port IMAP, généralement 993."
+    },
+    "mail_security": {
+      "type": "string",
+      "title": "Sécurité (fournisseur autre)",
+      "description": "Seulement si le fournisseur est autre : tls (connexion chiffrée directe, port 993) ou starttls.",
+      "default": "tls",
+      "options": ["tls", "starttls"]
+    }
+  }
+}

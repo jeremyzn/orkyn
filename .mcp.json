@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "mail": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/scripts/mail-mcp.mjs"
+      ],
+      "env": {
+        "ORKYN_MAIL_PROVIDER": "${user_config.mail_provider}",
+        "ORKYN_MAIL_ADDRESS": "${user_config.mail_address}",
+        "ORKYN_MAIL_PASSWORD": "${user_config.mail_password}",
+        "ORKYN_MAIL_HOST": "${user_config.mail_host}",
+        "ORKYN_MAIL_PORT": "${user_config.mail_port}",
+        "ORKYN_MAIL_SECURITY": "${user_config.mail_security}"
+      }
+    }
+  }
+}

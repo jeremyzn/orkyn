@@ -1,0 +1,14 @@
+{
+  "name": "orkyn",
+  "owner": {
+    "name": "jeremyzn"
+  },
+  "description": "Marketplace du plugin ORKYN, une équipe d'agents spécialisés pour Claude Code.",
+  "plugins": [
+    {
+      "name": "orkyn",
+      "source": "./",
+      "description": "Équipe d'agents spécialisés pour Claude Code (architecte, développeur, chercheur, QA, relecteur, Roblox, mails en lecture seule), avec garde-fous de sécurité."
+    }
+  ]
+}
