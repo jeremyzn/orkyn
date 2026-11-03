@@ -1,6 +1,6 @@
 # Checklist sécurité (chargée à la demande)
 
-Ne traite que les points que le changement touche réellement.
+Ne traite que les points que le changement touche réellement. Pour un audit complet (scanners, dépendances, mobile, IA, priorisation), c'est le rôle de `orkyn-security` et de son skill du même nom.
 
 - **Entrées** : validation côté serveur (schéma, type, taille), pas de confiance dans les données du client.
 - **Injection** : requêtes SQL/NoSQL paramétrées (attention aux opérateurs `$where`/`$regex` injectés en MongoDB), pas de `exec`/`eval`/shell avec des données externes, chemins de fichiers normalisés (path traversal).
@@ -12,3 +12,6 @@ Ne traite que les points que le changement touche réellement.
 - **Données personnelles** : minimisation, chiffrement si requis, pas d'exposition dans les réponses ou les erreurs.
 - **Erreurs** : pas de stack trace ni de détail interne renvoyé au client.
 - **SSRF / fetch serveur** : URL contrôlées par l'utilisateur filtrées (hôtes internes, métadonnées cloud).
+- **Mobile** : aucun secret ni jeton en clair dans le stockage local, HTTPS seulement, composants Android exportés et deep links validés, aucune clé d'API serveur dans l'application.
+- **IA** : contenu externe jamais mêlé aux instructions d'un modèle sans séparation, sortie du modèle traitée comme une entrée non fiable, outils au moindre privilège.
+- **Nouvelle dépendance** : le paquet existe, n'est pas un nom proche d'un paquet connu, n'a pas été créé il y a quelques jours.

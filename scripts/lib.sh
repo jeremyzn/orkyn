@@ -165,3 +165,34 @@ _json() {
 
 json_str() { _json str "$@"; }
 json_strings() { _json strings "$@"; }
+
+# is_secret_path <chemin>           → vrai si le chemin désigne un fichier de secrets : .env (hors modèles
+#                                     .example, .sample, .template, .dist), clés privées et certificats
+#                                     (pem, key, p8, p12, pfx, id_rsa...), keystores Android (jks, keystore,
+#                                     key.properties), jetons de gestionnaires (.npmrc, .pypirc, .netrc),
+#                                     identifiants cloud (.aws/credentials, .kube/config, .docker/config.json,
+#                                     gh hosts.yml, comptes de service), états Terraform, dossiers .ssh et .gnupg.
+#                                     Les clés publiques (.pub) restent lisibles.
+is_secret_path() {
+  local p b
+  p=$(to_unix_path "$1" | tr '[:upper:]' '[:lower:]')
+  p="${p%/}"
+  b="${p##*/}"
+  case "$b" in *.pub) return 1 ;; esac
+  case "$b" in
+    .env.example|.env.sample|.env.template|.env.dist|.env.*.example|.env.*.sample|.env.*.template) return 1 ;;
+    .env|.env.*|*.env|.dev.vars|.envrc) return 0 ;;
+    *.pem|*.key|*.p8|*.p12|*.pfx|*.jks|*.keystore|*.ppk|*.asc|*.gpg) return 0 ;;
+    id_rsa*|id_dsa*|id_ecdsa*|id_ed25519*) return 0 ;;
+    key.properties|keystore.properties|signing.properties) return 0 ;;
+    .npmrc|.yarnrc.yml|.pypirc|.netrc|_netrc|.git-credentials|.htpasswd) return 0 ;;
+    credentials|credentials.json|client_secret*.json|service-account*.json|serviceaccount*.json) return 0 ;;
+    secrets.json|secrets.yml|secrets.yaml|secrets.toml|.secrets|*.tfstate|*.tfstate.backup) return 0 ;;
+  esac
+  case "$p" in
+    */.ssh/*|*/.gnupg/*|*/.aws/*|*/.azure/*|*/.config/gcloud/*|*/.kube/config|*/.docker/config.json) return 0 ;;
+    */.config/gh/hosts.yml|*/.android/adbkey|*/.gradle/gradle.properties|*/.appstoreconnect/*) return 0 ;;
+    */library/keychains/*|*/.password-store/*) return 0 ;;
+  esac
+  return 1
+}

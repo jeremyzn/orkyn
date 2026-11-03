@@ -6,6 +6,7 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 . "$root/scripts/lib.sh"
 proj="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")}"
 at_home=0; [ "$(cd "$proj" 2>/dev/null && pwd -P)" = "$(cd "$HOME" 2>/dev/null && pwd -P)" ] && at_home=1
+echo "- Pilote automatique : aucune question pendant la mission, actions soumises à accord regroupées à la fin"
 echo "- Niveau : à choisir par toi pour cette mission (léger, standard ou approfondi, aucun mode à régler)"
 echo "- Date du jour : $(date +%Y-%m-%d 2>/dev/null || echo inconnue), sert de mois courant pour la fraîcheur des sources web"
 
@@ -53,6 +54,7 @@ stack=""
 for m in package.json tsconfig.json next.config.js next.config.mjs next.config.ts pnpm-lock.yaml yarn.lock bun.lockb bun.lock \
          pyproject.toml requirements.txt Cargo.toml go.mod Gemfile composer.json pom.xml build.gradle Package.swift \
          Dockerfile docker-compose.yml Makefile deno.json \
+         pubspec.yaml settings.gradle settings.gradle.kts build.gradle.kts gradle/libs.versions.toml Podfile app.json eas.json \
          default.project.json rokit.toml aftman.toml wally.toml pesde.toml selene.toml stylua.toml; do
   [ -e "$proj/$m" ] && stack="$stack $m"
 done
@@ -60,6 +62,35 @@ for m in "$proj"/*.xcodeproj "$proj"/*.project.json "$proj"/*.rbxl "$proj"/*.rbx
   [ -e "$m" ] && [ "$(basename "$m")" != "default.project.json" ] && stack="$stack $(basename "$m")"
 done
 echo "- Marqueurs de stack :${stack:- aucun}"
+
+# Plateformes mobiles (racine et sous-dossiers usuels d'un monorepo)
+mob=""
+has_dep() { [ -f "$1/package.json" ] && grep -q "\"$2\"" "$1/package.json" 2>/dev/null; }
+for d in "$proj" "$proj"/apps/* "$proj"/mobile "$proj"/app "$proj"/packages/*; do
+  [ -d "$d" ] || continue
+  rel="${d#"$proj"}"; rel="${rel#/}"; at="${rel:+ ($rel)}"
+  [ -f "$d/pubspec.yaml" ] && grep -q 'flutter' "$d/pubspec.yaml" 2>/dev/null && mob="$mob Flutter$at"
+  [ -f "$d/pubspec.yaml" ] && ! grep -q 'flutter' "$d/pubspec.yaml" 2>/dev/null && mob="$mob Dart$at"
+  if has_dep "$d" expo; then mob="$mob Expo$at"; elif has_dep "$d" react-native; then mob="$mob ReactNative$at"; fi
+  if [ ! -f "$d/pubspec.yaml" ] && ! has_dep "$d" react-native && ! has_dep "$d" expo; then
+    if ls "$d"/*/src/commonMain >/dev/null 2>&1 || ls "$d"/src/commonMain >/dev/null 2>&1; then mob="$mob KotlinMultiplatform$at"
+    elif [ -f "$d/settings.gradle.kts" ] || [ -f "$d/settings.gradle" ]; then
+      grep -rqs 'com.android' "$d"/build.gradle* "$d"/*/build.gradle* "$d"/gradle/libs.versions.toml 2>/dev/null && mob="$mob Android$at"
+    fi
+    if ls -d "$d"/*.xcodeproj "$d"/*.xcworkspace >/dev/null 2>&1 || [ -f "$d/project.yml" ] || [ -f "$d/Tuist.swift" ] || [ -f "$d/Project.swift" ]; then mob="$mob iOS$at"
+    elif [ -f "$d/Package.swift" ]; then mob="$mob SwiftPM$at"; fi
+  fi
+done
+echo "- Mobile :${mob:- aucun projet mobile détecté}"
+
+# Outils présents (aucune installation : un outil absent est signalé, pas installé)
+tools=""
+for t in node npm pnpm bun python3 go cargo java flutter dart xcodebuild swift adb emulator \
+         gitleaks betterleaks trufflehog semgrep opengrep osv-scanner trivy grype syft govulncheck pip-audit cargo-audit \
+         bandit gosec mobsfscan zizmor actionlint hadolint checkov; do
+  command -v "$t" >/dev/null 2>&1 && tools="$tools $t"
+done
+echo "- Outils présents :${tools:- aucun}"
 if [ -n "${VIBESTARTER_AGENT_TYPE:-}" ] || [ -n "${VIBESTARTER_PROJECT_PATH:-}" ]; then
   echo "- Vibe Starter : session détectée, MCP vibestarter_mcp disponible, utiliser orkyn:orkyn-roblox"
 else

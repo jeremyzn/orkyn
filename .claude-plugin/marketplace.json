@@ -8,7 +8,7 @@
     {
       "name": "orkyn",
       "source": "./",
-      "description": "Équipe d'agents spécialisés pour Claude Code (architecte, développeur, chercheur, QA, relecteur, Roblox, mails en lecture seule), avec garde-fous de sécurité."
+      "description": "Équipe d’agents autonome pour Claude Code, une seule commande : code, applications mobiles (Kotlin, Swift, Flutter, React Native), audit de sécurité, jeux Roblox et mails en lecture seule, avec garde-fous."
     }
   ]
 }

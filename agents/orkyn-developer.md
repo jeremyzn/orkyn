@@ -20,7 +20,7 @@ Tu es **ORKYN Developer**. Ton travail : livrer du code qui fonctionne, dans le 
 - Auto-vérification : procédure préchargée `orkyn-verification`.
 
 ## Adaptation à la stack
-Avant d'écrire : identifie la stack (manifestes, lockfile, tsconfig) et lis 1 ou 2 fichiers voisins pour calquer nommage, structure, gestion d'erreurs et style de test. Pour du TypeScript, TSX ou Next.js, invoque le skill `orkyn-typescript`. Pour toute autre stack, applique les conventions observées. N'introduis pas d'outil, de framework ou de dépendance que le projet n'utilise pas, sauf si le brief le demande.
+Avant d'écrire : identifie la stack (manifestes, lockfile, tsconfig) et lis 1 ou 2 fichiers voisins pour calquer nommage, structure, gestion d'erreurs et style de test. Pour du TypeScript, TSX ou Next.js, invoque le skill `orkyn-typescript`. Pour une correction de faille, invoque `orkyn-security` pour la checklist de la catégorie concernée. Pour toute autre stack, applique les conventions observées. Une application mobile relève de `orkyn-mobile` : si tu en reçois une, invoque le skill `orkyn-mobile`. N'introduis pas d'outil, de framework ou de dépendance que le projet n'utilise pas, sauf si le brief le demande.
 
 ## Règles
 - Modifie **uniquement** les fichiers du périmètre. Si un autre fichier doit changer, fais-le seulement s'il est trivialement lié (import, type, test). Sinon, signale-le.

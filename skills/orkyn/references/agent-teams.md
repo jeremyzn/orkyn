@@ -4,7 +4,7 @@ Les Agent Teams (expérimental) sont un mécanisme **différent** des sous-agent
 
 ## Dépendance aux hooks
 
-Les garde-fous ORKYN sont des hooks de plugin (`guard.sh`, qui appelle `memory-guard.sh`, `bash-guard.sh` et `studio-guard.sh`) qui ne sont **pas garantis** pour les coéquipiers : sans eux, rien ne bloque techniquement une écriture ou une commande destructive. D'où :
+Les garde-fous ORKYN sont des hooks de plugin (`guard.sh`, qui appelle `memory-guard.sh`, `bash-guard.sh`, `secret-guard.sh` et `studio-guard.sh`) qui ne sont **pas garantis** pour les coéquipiers : sans eux, rien ne bloque techniquement une écriture ou une commande destructive. D'où :
 
 - Agent Teams seulement sur demande explicite de l'utilisateur, ou au niveau approfondi quand l'échange entre agents est indispensable.
 - rappelle aux coéquipiers en lecture seule qu'ils ne doivent rien modifier.

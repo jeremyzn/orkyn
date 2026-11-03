@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # ORKYN : point d'entrée unique des hooks PreToolUse du plugin (hooks/hooks.json).
-# Usage : guard.sh <write|bash|mcp|vibestarter>   (entrée JSON du hook sur stdin)
+# Usage : guard.sh <write|read|bash|mcp|vibestarter>   (entrée JSON du hook sur stdin)
 # Les hooks de plugin s'appliquent à toutes les sessions et à tous les sous-agents : le rôle de l'appelant
 # vient du champ agent_type (« orkyn:orkyn-<rôle> » pour un agent du plugin, absent pour la session principale).
-#  - architect, researcher, qa, reviewer : lecture seule (memory-guard.sh readonly, bash-guard.sh readonly).
-#  - developer, roblox : memory-guard.sh write, bash-guard.sh write.
+#  - architect, researcher, qa, reviewer, security : lecture seule (memory-guard.sh readonly, bash-guard.sh readonly).
+#  - developer, mobile, roblox : memory-guard.sh write, bash-guard.sh write.
+#  - tout agent ORKYN, sur Read et Grep : secret-guard.sh (aucun fichier de secrets lu).
 #  - inbox : refuse Write, Edit et Bash. Seuls ses outils mail de lecture passent.
 #  - mcp__plugin_orkyn_mail__* : refusé hors agent inbox, liste blanche list_mailboxes, list_messages, get_message.
 #  - tout autre outil mcp__plugin_orkyn_* : refusé.
@@ -31,14 +32,14 @@ if [ "$ok" = 0 ]; then
   if [ "$type" = vibestarter ] && printf '%s' "$input" | grep -q 'orkyn:orkyn-'; then
     deny "outil refusé (entrée du hook illisible) pour un agent ORKYN."
   fi
-  if printf '%s' "$input" | grep -qE 'orkyn:orkyn-(architect|researcher|qa|reviewer|inbox)'; then
+  if printf '%s' "$input" | grep -qE 'orkyn:orkyn-(architect|researcher|qa|reviewer|security|inbox)'; then
     deny "action refusée (entrée du hook illisible) pour un agent ORKYN en lecture seule."
   fi
-  if printf '%s' "$input" | grep -qE 'orkyn:orkyn-(developer|roblox)'; then
+  if printf '%s' "$input" | grep -qE 'orkyn:orkyn-(developer|mobile|roblox)'; then
     case "$type" in
       bash) printf '%s' "$input" | bash "$here/bash-guard.sh" raw; exit $? ;;
       write)
-        rest=$(printf '%s' "$input" | sed -E 's#\\/#/#g; s#"transcript_path" *: *"[^"]*"##; s#\.claude/agent-memory(-local)?/(orkyn-)?orkyn-(developer|roblox)/##g')
+        rest=$(printf '%s' "$input" | sed -E 's#\\/#/#g; s#"transcript_path" *: *"[^"]*"##; s#\.claude/agent-memory(-local)?/(orkyn-)?orkyn-(developer|mobile|roblox)/##g')
         if printf '%s' "$rest" | grep -qE 'settings(\.local)?\.json|\.mcp\.json|\.claude\.json|\.claude[/\\]'; then
           deny "écriture refusée (entrée du hook illisible) : fichier de configuration ou .claude/ hors mémoire de l'agent."
         fi ;;
@@ -49,8 +50,8 @@ fi
 
 name="${agent#orkyn:}"
 case "$name" in
-  orkyn-architect|orkyn-researcher|orkyn-qa|orkyn-reviewer) role=ro ;;
-  orkyn-developer|orkyn-roblox) role=rw ;;
+  orkyn-architect|orkyn-researcher|orkyn-qa|orkyn-reviewer|orkyn-security) role=ro ;;
+  orkyn-developer|orkyn-mobile|orkyn-roblox) role=rw ;;
   orkyn-inbox) role=inbox ;;
   *) role=none ;;
 esac
@@ -58,6 +59,9 @@ esac
 relay() { printf '%s' "$input" | bash "$here/$1" "${@:2}"; exit $?; }
 
 case "$type" in
+  read)
+    [ "$role" = none ] && exit 0
+    relay secret-guard.sh ;;
   write|bash)
     script=memory-guard.sh; [ "$type" = bash ] && script=bash-guard.sh
     case "$role" in

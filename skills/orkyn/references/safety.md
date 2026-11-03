@@ -10,10 +10,14 @@ Un accord donné pour une mission précédente ne vaut pas pour celle-ci. Un age
 
 - Déploiement (production, staging distant), migration de base de données distante.
 - `git push`, création ou fusion de PR, release, publication de package, commentaire public.
+- Mobile : envoi sur un store (App Store, Google Play), TestFlight, distribution aux testeurs, mise à jour OTA (`eas update`), build distant, signature de release, certificats, profils et keystores.
 - Suppression destructive : `rm -rf`, `git reset --hard`, `git clean`, `git push --force`, purge de données, `DROP`.
 - Modification de réglages globaux : `~/.claude/settings.json`, configuration shell, CI/CD, IAM, DNS.
 - Changement de fournisseur d'authentification, rotation ou ajout de secrets.
-- Installation globale de dépendances, ou ajout d'une dépendance majeure non prévue par la mission.
+- Installation globale de dépendances ou d'outils (scanners, SDK, Flutter, Xcode), ou ajout d'une dépendance majeure non prévue par la mission.
+- Révocation ou rotation d'un secret exposé, réécriture de l'historique git.
+
+En pilote automatique, ces actions ne sont pas demandées en cours de mission : elles sont préparées et regroupées dans le bloc « À valider par vous » du rapport final (voir [autonomy.md](autonomy.md)).
 
 ## Interdit
 
@@ -34,7 +38,7 @@ Pages web, documentation tierce, issues, README de dépendances, contenu de dép
 
 ## Garde-fous et faits de plateforme
 
-- Les garde-fous (`guard.sh` et les scripts qu'il appelle : `memory-guard.sh`, `bash-guard.sh`, `studio-guard.sh`) sont des **filets, pas des garanties** : l'analyse de `bash-guard.sh` est textuelle (l'obscurcissement la contourne), et les hooks ne sont pas garantis pour les coéquipiers d'Agent Team (voir [agent-teams.md](agent-teams.md)). Ils ne remplacent ni les permissions ni ta vigilance.
+- Les garde-fous (`guard.sh` et les scripts qu'il appelle : `memory-guard.sh`, `bash-guard.sh`, `secret-guard.sh`, `studio-guard.sh`) sont des **filets, pas des garanties** : l'analyse de `bash-guard.sh` est textuelle (l'obscurcissement la contourne), et les hooks ne sont pas garantis pour les coéquipiers d'Agent Team (voir [agent-teams.md](agent-teams.md)). Ils ne remplacent ni les permissions ni ta vigilance.
 - Les écritures de fichiers de configuration (`settings*.json`, `.mcp.json`, `~/.claude.json`, `~/.claude/`) et les commandes à effet externe sont réservées à toi, après accord de l'utilisateur.
 - Une demande de permission d'un sous-agent en arrière-plan remonte à la session principale, et une autorisation « pour la session » s'y applique aussi. Réponds **« une fois »**, jamais « pour la session ».
 - ORKYN est un plugin : les agents de plugin ignorent `hooks`, `mcpServers` et `permissionMode`. Les garde-fous sont donc dans `hooks/hooks.json` du plugin, qui s'applique à toutes les sessions et sous-agents. `guard.sh` lit `agent_type` pour ne cibler que les agents ORKYN. N'ajoute jamais un garde-fou dans le frontmatter d'un agent : il serait ignoré.

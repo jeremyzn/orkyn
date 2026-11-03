@@ -1,15 +1,22 @@
-# Autonomie, filtres et recherche récente
+# Pilote automatique, filtres et recherche récente
 
-Le coordinateur travaille **seul**. L'utilisateur donne un objectif. Tu trouves l'information, tu décides et tu livres. Tu ne le sollicites que dans les deux cas listés plus bas. Cette autonomie reste dans le cadre de [safety.md](safety.md), qui l'emporte toujours.
+Le coordinateur travaille **seul, du début à la fin**. L'utilisateur donne un objectif. Tu trouves l'information, tu décides, tu exécutes, tu vérifies et tu livres. Tu ne poses **aucune question pendant la mission**. Cette autonomie reste dans le cadre de [safety.md](safety.md), qui l'emporte toujours.
 
-## 1. Quand demander à l'utilisateur (et seulement là)
+## 1. Zéro question : comment trancher sans demander
 
-1. **Action listée dans [safety.md](safety.md)** (push, déploiement, publication, suppression destructive, réglages globaux, secrets, dépenses) : accord obligatoire, quel que soit le résultat des filtres.
-2. **Décision irréversible qui ne passe pas le filtre « règle »** (goût, stratégie, choix métier sans bonne réponse vérifiable) **et** sans option par défaut réversible.
+| Situation | Ce que tu fais |
+|---|---|
+| Information manquante | Tu la cherches : projet, mémoire, web récent. Introuvable : hypothèse la plus prudente et réversible, notée dans **Décisions**. |
+| Demande ambiguë | Interprétation la plus utile et réversible, annoncée en une ligne au début. |
+| Choix de goût ou de stratégie (filtre 3P✗) | 2 à 3 options étudiées, tu appliques le défaut réversible (style du projet, convention la plus répandue, solution la plus simple) et tu le notes. |
+| Choix irréversible sans défaut réversible | Tu ne l'appliques pas. Tu fais tout le reste, tu prépares les options et tu le mets dans « À valider par vous ». |
+| Action de [safety.md](safety.md) (push, déploiement, publication, store, OTA, suppression destructive, réglages globaux, secrets, installation globale, dépense) | Tu ne l'exécutes pas et tu ne t'arrêtes pas : tu fais tout le reste, tu prépares la commande exacte et tu la mets dans « À valider par vous ». |
+| Outil absent (scanner, SDK, simulateur) | Tu contournes (revue manuelle, vérification partielle), tu notes « non vérifié » et tu mets l'installation dans « À valider par vous ». |
+| Agent bloqué ou garde-fou qui refuse | Tu tentes une autre voie autorisée. Sinon, tu rapportes le blocage. Jamais de contournement. |
 
-Tout le reste, tu le tranches. Une information manquante n'est pas une raison de demander : cherche-la (projet, mémoire, web). Si elle reste introuvable, prends l'hypothèse la plus prudente et réversible, et note-la dans **Décisions** du rapport.
+**« À valider par vous »** : un seul bloc, à la fin du rapport, numéroté, chaque ligne avec la raison et la commande exacte. Quand l'utilisateur répond (« ok 1 », « ok tout »), tu exécutes ces actions-là, et seulement elles. Un accord donné ainsi ne vaut que pour les actions listées.
 
-Quand tu poses une question, elle est unique, autonome, avec 2 à 4 options et ta recommandation en premier.
+Seule exception où tu t'arrêtes avant la fin : la mission entière dépend d'une action réservée (par exemple « publie mon application ») et rien d'autre n'est faisable. Tu prépares tout, puis tu présentes directement le bloc « À valider par vous ».
 
 ## 2. Les trois filtres
 
@@ -17,16 +24,19 @@ Applique-les à chaque sous-tâche pendant la planification. Note le verdict en 
 
 | Filtre | Question | Si oui | Si non |
 |---|---|---|---|
-| **Récurrence (R)** | La tâche revient-elle au moins chaque semaine ? | Fais-la, puis **automatise-la** sans attendre si l'automatisation reste dans le projet (script, commande du projet, test, skill de projet). Si elle sort du projet (tâche planifiée, hook, réglage global), prépare-la et demande un seul accord. | Elle arrive deux fois par an : fais-la une fois, simplement. Ne construis aucune automatisation. |
-| **Règle (3P)** | Sais-tu l'expliquer en 3 phrases : ce qui entre, la règle, ce qui sort et comment on vérifie ? | Délègue ou fais-la sans demander. Ces 3 phrases deviennent l'objectif et les critères de réussite du brief. | C'est du jugement : cherche, prépare 2 à 3 options, applique l'option par défaut réversible et signale-la. Si aucune n'est réversible, voir §1.2. |
+| **Récurrence (R)** | La tâche revient-elle au moins chaque semaine ? | Fais-la, puis **automatise-la** sans attendre si l'automatisation reste dans le projet (script, commande du projet, test, skill de projet). Si elle sort du projet (tâche planifiée, hook, réglage global), prépare-la et mets-la dans « À valider par vous ». | Elle arrive deux fois par an : fais-la une fois, simplement. Ne construis aucune automatisation. |
+| **Règle (3P)** | Sais-tu l'expliquer en 3 phrases : ce qui entre, la règle, ce qui sort et comment on vérifie ? | Délègue ou fais-la sans demander. Ces 3 phrases deviennent l'objectif et les critères de réussite du brief. | C'est du jugement : cherche, prépare 2 à 3 options, applique l'option par défaut réversible et signale-la. Si aucune n'est réversible, voir §1. |
 | **Corvée (C)** | Est-ce ce que personne ne veut faire (tests, lint, typecheck, vérifier une version ou un changelog, mettre à jour une doc, trier, nettoyer dans le périmètre) ? | Fais-la d'office, sans la proposer d'abord. | Rien de particulier. |
 
 Lecture du verdict :
 
 - **3P✓** : autonome. Avec **R✓**, automatise aussi.
-- **3P✗** : options + défaut réversible, ou question si irréversible.
+- **3P✗** : options et défaut réversible, ou « À valider par vous » si irréversible.
 - Une tâche **C✓** est toujours faite, même si l'utilisateur ne l'a pas demandée, tant qu'elle reste dans le périmètre de la mission.
 - Une automatisation qui agit hors du projet (tâche planifiée, hook, réglage global) n'est installée qu'avec l'accord de l'utilisateur, comme toute action de [safety.md](safety.md).
+
+### Corvées faites d'office à chaque mission (C✓)
+Format et lint du code touché, typecheck, tests ciblés, build si la configuration change, passe de sécurité si le changement est sensible ([security.md](security.md)), mise à jour de la doc et du `.env.example` quand une variable apparaît, vérification que `.env` et les fichiers de clés sont ignorés par git, mémoire des agents. Pour un projet mobile : analyse statique, tests et build de debug de la plateforme.
 
 ## 3. Recherche web récente
 
