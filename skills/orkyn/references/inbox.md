@@ -21,7 +21,7 @@ Accès **strictement en lecture** à la boîte mail de l'utilisateur (Gmail, iCl
 2. Node 24 ou plus (le serveur est lancé par `npx`, paquet `@ni-c/imap-mcp` épinglé en version 0.6.0).
 3. Proton : Proton Mail Bridge lancé et connecté (IMAP `127.0.0.1:1143`, STARTTLS).
 
-Le lanceur `scripts/mail-mcp.mjs` (Node, identique sur macOS, Linux et Windows) vérifie la configuration et affiche ce qui manque. Il configure le serveur en lecture seule (`IMAP_READ_ONLY=true`, outils autorisés : `list_mailboxes`, `list_messages`, `get_message`). Le garde-fou `guard.sh` refuse tout outil mail à un autre agent que `orkyn-inbox` et tout outil hors de cette liste. Filets, pas garanties.
+Le lanceur `scripts/mail-mcp.mjs` (Node, identique sur macOS, Linux et Windows) vérifie la configuration et affiche ce qui manque. Si elle est absente ou invalide, il reste connecté et renvoie ce message à chaque appel d'outil, au lieu d'apparaître comme un serveur en échec. Il configure le serveur en lecture seule (`IMAP_READ_ONLY=true`, outils autorisés : `list_mailboxes`, `list_messages`, `get_message`). Le garde-fou `guard.sh` refuse tout outil mail à un autre agent que `orkyn-inbox` et tout outil hors de cette liste. Filets, pas garanties.
 
 ## Récurrence
 
