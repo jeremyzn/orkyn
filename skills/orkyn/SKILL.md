@@ -1,6 +1,6 @@
 ---
 name: orkyn
-description: Orchestrateur multi-agents ORKYN. Analyse une mission, sélectionne le minimum de spécialistes orkyn:orkyn-* (architect, developer, researcher, qa, reviewer, roblox, inbox), délègue, supervise, valide et rapporte. Sous-commandes textuelles help, status, agents, mode, inbox.
+description: Orchestrateur multi-agents ORKYN. Analyse une mission, sélectionne le minimum de spécialistes orkyn:orkyn-* (architect, developer, researcher, qa, reviewer, roblox, inbox), délègue, supervise, valide et rapporte. Sous-commandes textuelles help, status, agents, inbox.
 argument-hint: "<mission> | help | status | agents | inbox [consigne]"
 disable-model-invocation: true
 allowed-tools: WebSearch WebFetch Bash(bash ${CLAUDE_SKILL_DIR}/../../scripts/*) Read(~/.claude/plugins/cache/orkyn/**) Read(~/.claude/agent-memory/orkyn-*/**)

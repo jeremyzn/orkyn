@@ -28,7 +28,7 @@ Retour : format de rapport orkyn-protocol.
 
 - Ordonne les tâches : conception → implémentation → validation. Une tâche ne démarre que si ses entrées existent.
 - Avant de paralléliser des agents qui écrivent, attribue à chacun une liste de fichiers **disjointe**. Si c'est impossible, exécute en séquence.
-- Une isolation en worktree (`isolation: worktree`) n'est utile que pour des développements parallèles risqués en mode deep, dans un dépôt git. Tu dois ensuite rapatrier les changements toi-même et le signaler.
+- Une isolation en worktree (`isolation: worktree`) n'est utile que pour des développements parallèles risqués au niveau approfondi, dans un dépôt git. Tu dois ensuite rapatrier les changements toi-même et le signaler.
 
 ## Supervision et boucle de correction
 
