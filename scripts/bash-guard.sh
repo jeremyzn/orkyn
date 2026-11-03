@@ -2,7 +2,7 @@
 # ORKYN : commandes Bash des agents orkyn-*, appelé par guard.sh.
 # Usage : bash-guard.sh <readonly|write|raw>   (entrée JSON du hook sur stdin)
 # Mode raw (appelé par guard.sh quand aucun lecteur JSON ne comprend l'entrée) : règles du mode write
-# appliquées au texte brut grossièrement déséchappé ; faux positifs acceptés.
+# appliquées au texte brut grossièrement déséchappé. Faux positifs acceptés.
 # Bloque (exit 2) les commandes dont l'effet est externe ou destructif : push, reset --hard, clean -f,
 # restauration de l'arbre de travail, publication, déploiement, rm -rf hors /tmp ou /var/tmp, sudo, curl|sh.
 # `git stash` n'est bloqué qu'en readonly.
@@ -22,7 +22,7 @@ fi
 [ -n "$cmd" ] || exit 0
 
 deny() {
-  echo "ORKYN : commande bloquée ($1) — action réservée au coordinateur après accord explicite de l'utilisateur." >&2
+  echo "ORKYN : commande bloquée ($1). Action réservée au coordinateur après accord explicite de l'utilisateur." >&2
   exit 2
 }
 

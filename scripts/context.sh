@@ -6,20 +6,12 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 . "$root/scripts/lib.sh"
 proj="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")}"
 at_home=0; [ "$(cd "$proj" 2>/dev/null && pwd -P)" = "$(cd "$HOME" 2>/dev/null && pwd -P)" ] && at_home=1
-cfg_user="$HOME/.claude/orkyn/config.json"
-cfg_proj="$proj/.claude/orkyn.json"
-
-read_mode() { [ -f "$1" ] && sed -n 's/.*"mode"[[:space:]]*:[[:space:]]*"\([a-z]*\)".*/\1/p' "$1" 2>/dev/null | head -n1; }
-
-mode=""; src="défaut"
-m=$(read_mode "$cfg_proj"); if [ -n "$m" ]; then mode="$m"; src="projet (.claude/orkyn.json)"; fi
-if [ -z "$mode" ]; then m=$(read_mode "$cfg_user"); if [ -n "$m" ]; then mode="$m"; src="utilisateur (~/.claude/orkyn/config.json)"; fi; fi
-case "$mode" in eco|balanced|deep) ;; *) [ -n "$mode" ] && src="valeur invalide '$mode' ignorée"; mode="balanced";; esac
-echo "- Mode : $mode — source : $src"
+echo "- Niveau : à choisir par toi pour cette mission (léger, standard ou approfondi, aucun mode à régler)"
+echo "- Date du jour : $(date +%Y-%m-%d 2>/dev/null || echo inconnue), sert de mois courant pour la fraîcheur des sources web"
 
 teams="${CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS:-}"
 if [ "$teams" = "1" ]; then echo "- Agent Teams : ACTIVÉES (CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1)"
-else echo "- Agent Teams : désactivées — utiliser les sous-agents"; fi
+else echo "- Agent Teams : désactivées, utiliser les sous-agents"; fi
 
 agents=""
 files=("$root"/agents/orkyn-*.md)

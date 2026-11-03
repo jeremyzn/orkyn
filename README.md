@@ -29,19 +29,11 @@ Tapez /orkyn suivi de votre demande.
 /orkyn cherche pourquoi ce test échoue
 ```
 
-ORKYN a trois façons de travailler :
+ORKYN travaille seul. S'il lui manque une information, il la cherche lui-même, dans votre projet ou sur le web, en privilégiant les sources du mois en cours. Il ne vous pose une question que pour une action importante (voir Sécurité) ou pour un choix de goût qu'on ne peut pas défaire.
 
-- eco : rapide et économe, pour les petites demandes ;
-- balanced : le mode normal, utilisé par défaut ;
-- deep : le plus approfondi, pour les gros chantiers.
+Pour décider quoi faire seul, il passe chaque tâche à trois filtres : est-ce que ça revient chaque semaine, est-ce que ça s'explique en trois phrases, est-ce une corvée que personne ne veut faire. Ce qui revient chaque semaine et suit une règle simple, il l'automatise. Il vous demande seulement avant d'installer quelque chose en dehors de votre projet. Les corvées, il les fait d'office.
 
-Pour utiliser un mode une seule fois, écrivez son nom avant la demande.
-
-```
-/orkyn deep: refais la page de connexion de mon application
-```
-
-Pour changer de mode pour de bon, tapez /orkyn mode suivi du nom du mode. Tapez /orkyn help pour voir toutes les commandes.
+Il n'y a rien à régler : pour chaque demande, ORKYN décide lui-même s'il faut aller vite ou y passer plus de temps, selon la taille et les risques de la tâche. Tapez /orkyn help pour voir toutes les commandes.
 
 ## Jeux Roblox
 

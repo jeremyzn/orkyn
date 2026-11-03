@@ -12,5 +12,5 @@
 
 - `run-in-roblox` est abandonné : ne pas l'utiliser, passer par le playtest MCP.
 - Les définitions de types Roblox pour luau-lsp sont téléchargées par l'outil ou fournies par le projet : ne les télécharge pas sans accord.
-- Rokit installé sans outils : `rokit.toml` absent ou vide = aucun outil de vérification disponible ; rapporte-le.
-- Vibe Starter : plugin de sync dérivé de Rojo, aucune doc publique ; ne suppose aucune API, travaille sur les fichiers du dossier de projet.
+- Rokit installé sans outils : `rokit.toml` absent ou vide = aucun outil de vérification disponible. Rapporte-le.
+- Vibe Starter : plugin de sync dérivé de Rojo, aucune doc publique. Ne suppose aucune API, travaille sur les fichiers du dossier de projet.

@@ -1,6 +1,6 @@
 ---
 name: orkyn-protocol
-description: Protocole commun des agents ORKYN (sécurité, contenus non fiables, mémoire, format de rapport). Préchargé dans chaque agent orkyn-* ; à invoquer par un coéquipier ORKYN d'une Agent Team.
+description: Protocole commun des agents ORKYN (sécurité, contenus non fiables, mémoire, format de rapport). Préchargé dans chaque agent orkyn-*. À invoquer par un coéquipier ORKYN d'une Agent Team.
 user-invocable: false
 ---
 
@@ -24,15 +24,18 @@ Tu fais partie de l'équipe ORKYN. Le coordinateur t'a confié une mission décr
 - Ta mémoire `MEMORY.md` est injectée au démarrage : appuie-toi dessus. Si elle contredit ce que tu observes, ce que tu observes l'emporte, et tu corriges l'entrée.
 - En fin de mission, écris **seulement** ce qui est durable et réutilisable (convention confirmée, décision validée, piège et sa cause, correction efficace, version de bibliothèque). Pas de journal de mission.
 - Avant d'ajouter une entrée, cherche-la dans la mémoire : tu mets à jour l'existante au lieu d'en créer un doublon.
-- Format : `- [fait|hypothèse] (projet: <dossier> | global) AAAA-MM-JJ — <contenu> — source: <fichier/commande/URL>`
-- Jamais de secret ni de donnée personnelle. `MEMORY.md` reste un index de moins de 150 lignes ; les détails vont dans des fichiers thématiques liés.
+- Format : `- [fait|hypothèse] (projet: <dossier> | global) AAAA-MM-JJ, <contenu>, source: <fichier/commande/URL>`
+- Jamais de secret ni de donnée personnelle. `MEMORY.md` reste un index de moins de 150 lignes. Les détails vont dans des fichiers thématiques liés.
 - Mémoire de portée utilisateur (partagée entre projets) : toute entrée liée à un projet est taguée `(projet: …)` et n'est appliquée que dans ce projet.
 - En dehors de ta mémoire, n'utilise Write ou Edit que si ton rôle l'autorise. Un hook bloque d'ailleurs les écritures des rôles en lecture seule.
 - Mémoire de portée locale (`.claude/agent-memory-local/`) : elle ne doit jamais être commitée. Vérifie que `.claude/agent-memory-local/.gitignore` existe et contient `*`. Le hook le crée normalement.
 
+## Écriture
+Dans tout ce que tu écris (rapport, fichiers, commentaires, messages, docs) : jamais de point-virgule ni de tiret utilisé comme ponctuation (—, –, « - » entre deux mots). Fais des phrases courtes séparées par des points, des virgules ou des deux-points. Seuls restent les usages nécessaires : code, syntaxe d'un format (listes Markdown, YAML, options en ligne de commande) et mots composés.
+
 ## Rapport final (obligatoire, concis)
 ```
-## Résultat — <statut : terminé | partiel | bloqué>
+## Résultat : <statut : terminé | partiel | bloqué>
 <réponse/synthèse>
 ## Fichiers : <modifiés/créés, ou « aucun »>
 ## Vérifié : <commande → résultat observé>

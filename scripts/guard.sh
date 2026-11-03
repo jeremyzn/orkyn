@@ -2,18 +2,18 @@
 # ORKYN : point d'entrée unique des hooks PreToolUse du plugin (hooks/hooks.json).
 # Usage : guard.sh <write|bash|mcp|vibestarter>   (entrée JSON du hook sur stdin)
 # Les hooks de plugin s'appliquent à toutes les sessions et à tous les sous-agents : le rôle de l'appelant
-# vient du champ agent_type (« orkyn:orkyn-<rôle> » pour un agent du plugin ; absent pour la session principale).
-#  - architect, researcher, qa, reviewer : lecture seule (memory-guard.sh readonly, bash-guard.sh readonly) ;
-#  - developer, roblox : memory-guard.sh write, bash-guard.sh write ;
-#  - inbox : refuse Write, Edit et Bash ; seuls ses outils mail de lecture passent ;
-#  - mcp__plugin_orkyn_mail__* : refusé hors agent inbox, liste blanche list_mailboxes, list_messages, get_message ;
-#  - tout autre outil mcp__plugin_orkyn_* : refusé ;
-#  - mcp__vibestarter_mcp__* (Roblox passe uniquement par Vibe Starter) : libres hors agents ORKYN ;
-#    parmi eux seul orkyn-roblox y a accès, via studio-guard.sh ;
-#  - toute autre session ou agent, sur Write, Edit et Bash : exit 0 (usage normal de Claude Code inchangé) ;
+# vient du champ agent_type (« orkyn:orkyn-<rôle> » pour un agent du plugin, absent pour la session principale).
+#  - architect, researcher, qa, reviewer : lecture seule (memory-guard.sh readonly, bash-guard.sh readonly).
+#  - developer, roblox : memory-guard.sh write, bash-guard.sh write.
+#  - inbox : refuse Write, Edit et Bash. Seuls ses outils mail de lecture passent.
+#  - mcp__plugin_orkyn_mail__* : refusé hors agent inbox, liste blanche list_mailboxes, list_messages, get_message.
+#  - tout autre outil mcp__plugin_orkyn_* : refusé.
+#  - mcp__vibestarter_mcp__* (Roblox passe uniquement par Vibe Starter) : libres hors agents ORKYN.
+#    parmi eux seul orkyn-roblox y a accès, via studio-guard.sh.
+#  - toute autre session ou agent, sur Write, Edit et Bash : exit 0 (usage normal de Claude Code inchangé).
 #  - entrée illisible (aucun lecteur JSON, voir lib.sh) : refus (exit 2) pour mcp, vibestarter et les agents ORKYN
-#    lecture seule ; pour developer et roblox, contrôle grossier du texte brut (bash-guard.sh raw ; écriture :
-#    config ou .claude/ hors mémoire de l'agent) ; sinon exit 0 (session principale et agents tiers jamais gênés).
+#    lecture seule. Pour developer et roblox, contrôle grossier du texte brut (bash-guard.sh raw, écriture :
+#    config ou .claude/ hors mémoire de l'agent). Sinon exit 0 (session principale et agents tiers jamais gênés).
 # FILET DE SÉCURITÉ, PAS UNE GARANTIE : non garanti pour les coéquipiers d'Agent Team.
 type="${1:-}"
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

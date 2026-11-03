@@ -1,6 +1,6 @@
 ---
 name: orkyn-luau
-description: Conventions de développement Luau/Roblox - détection du projet (Rojo, Vibe Starter), séparation client/serveur, remotes validés côté serveur, vérification (stylua, selene, luau-lsp, Lune, playtest via Vibe Starter) et synchronisation fichiers/jeu. Utiliser lors de l'écriture ou de la modification de code Luau ou d'un jeu Roblox.
+description: Conventions de développement Luau/Roblox : détection du projet (Rojo, Vibe Starter), séparation client/serveur, remotes validés côté serveur, vérification (stylua, selene, luau-lsp, Lune, playtest via Vibe Starter) et synchronisation fichiers/jeu. Utiliser lors de l'écriture ou de la modification de code Luau ou d'un jeu Roblox.
 user-invocable: false
 ---
 
@@ -21,14 +21,14 @@ user-invocable: false
 - `--!strict` si le projet l'utilise (au moins sur les fichiers que tu écris). Types explicites sur les signatures publiques.
 - Services via `game:GetService("X")` en tête de fichier.
 - Séparation : `ServerScriptService` (logique autoritaire), `ReplicatedStorage` (modules partagés, remotes), `StarterPlayer/*` (client), `ServerStorage` (secret serveur). Rien de sensible dans `ReplicatedStorage`.
-- **Ne jamais faire confiance au client** : tout `RemoteEvent` / `RemoteFunction` reçu côté serveur valide le type, la plage, la cadence et l'autorisation du joueur. Le serveur décide (dégâts, monnaie, inventaire) ; le client n'envoie que des intentions.
-- `task.wait`, `task.spawn`, `task.delay` ; pas de `wait()`, `spawn()`, `delay()` dépréciés.
+- **Ne jamais faire confiance au client** : tout `RemoteEvent` / `RemoteFunction` reçu côté serveur valide le type, la plage, la cadence et l'autorisation du joueur. Le serveur décide (dégâts, monnaie, inventaire). Le client n'envoie que des intentions.
+- `task.wait`, `task.spawn`, `task.delay`. Pas de `wait()`, `spawn()`, `delay()` dépréciés.
 - Connexions et instances nettoyées (`Destroy`, `Disconnect`, Maid/Janitor si présent). Pas de boucle sans `task.wait`.
 - `pcall` autour des appels pouvant échouer (réseau, services). `WaitForChild` côté client avec nom attendu.
 - Pas de `loadstring`, `getfenv`, `setfenv`, `require(<nombre>)` (voir `orkyn-roblox-security`).
 
 ## 4. Vérifier (ne rien installer sans autorisation)
-Dans l'ordre, seulement si l'outil est présent (`command -v`, ou `rokit.toml` puis `rokit list`) ; sinon dis qu'il manque, et propose l'installation à l'utilisateur :
+Dans l'ordre, seulement si l'outil est présent (`command -v`, ou `rokit.toml` puis `rokit list`). Sinon dis qu'il manque, et propose l'installation à l'utilisateur :
 1. `stylua --check <chemins>`
 2. `selene <chemins>` (config `selene.toml`)
 3. `luau-lsp analyze` avec les définitions et sourcemap du projet (voir [tooling.md](tooling.md))

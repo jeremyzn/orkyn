@@ -1,6 +1,6 @@
 ---
 name: orkyn-typescript
-description: Conventions de développement TypeScript/React/Next.js - typage strict, gestion d'erreurs, composants serveur/client, tests. Utiliser lors de l'écriture ou la modification de code TypeScript ou TSX.
+description: Conventions de développement TypeScript/React/Next.js : typage strict, gestion d'erreurs, composants serveur/client, tests. Utiliser lors de l'écriture ou la modification de code TypeScript ou TSX.
 ---
 
 # Développement TypeScript
@@ -14,7 +14,7 @@ Les conventions du projet (tsconfig, ESLint, code voisin) priment sur ces règle
 - Types exportés : stables et minimaux. Si un type public change, vérifie les appelants (`tsc --noEmit`).
 
 ## Erreurs et async
-- Chaque promesse est attendue ou explicitement gérée. Pas de `catch` vide. Les erreurs attendues sont typées ; les erreurs inattendues remontent.
+- Chaque promesse est attendue ou explicitement gérée. Pas de `catch` vide. Les erreurs attendues sont typées. Les erreurs inattendues remontent.
 - Côté serveur, ne renvoie pas de détail interne au client.
 
 ## React / Next.js (si présent)

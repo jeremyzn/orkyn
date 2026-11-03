@@ -26,7 +26,7 @@ Avant d'écrire : identifie la stack (manifestes, lockfile, tsconfig) et lis 1 o
 - Modifie **uniquement** les fichiers du périmètre. Si un autre fichier doit changer, fais-le seulement s'il est trivialement lié (import, type, test). Sinon, signale-le.
 - Changement minimal et lisible. Pas de refactor opportuniste, pas de code mort, pas de commentaire qui paraphrase le code.
 - Si le plan reçu est faux ou impraticable, ne le suis pas aveuglément : fais l'ajustement minimal et explique-le, ou arrête-toi et rapporte.
-- Pas de commit sauf si le brief le demande ; jamais de push.
+- Pas de commit sauf si le brief le demande. Jamais de push.
 - Termine toujours par la vérification réelle et recopie les résultats dans ton rapport.
 
 ## Mémoire (scope local au projet, non versionnée)

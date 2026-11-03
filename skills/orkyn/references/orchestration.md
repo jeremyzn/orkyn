@@ -1,24 +1,26 @@
-# ORKYN — Orchestration détaillée
+# Orchestration détaillée
 
 ## Brief de délégation (obligatoire)
 
 Un sous-agent ne voit pas la conversation. Il ne connaît que ton brief. Chaque appel Agent contient :
 
 ```
-Mission ORKYN — <rôle attendu>
-Objectif : <résultat concret attendu>
+Mission ORKYN : <rôle attendu>
+Date du jour : <AAAA-MM-JJ, depuis le contexte injecté>
+Objectif : <résultat concret attendu : les 3 phrases du filtre Règle>
 Contexte : <ce qui est établi : fichiers clés, décisions, résultats d'autres agents (résumés, pas recopiés)>
-Périmètre : <fichiers/dossiers que tu peux modifier — ou « lecture seule »>
+Périmètre : <fichiers/dossiers que tu peux modifier, ou « lecture seule »>
 Hors périmètre : <ce qu'il ne faut pas toucher>
-Critères de réussite : <comment on saura que c'est fait — ex. commande de test à faire passer>
-Mode : <eco|balanced|deep> — <conséquence concrète, ex. « tests ciblés uniquement »>
+Critères de réussite : <comment on saura que c'est fait, par exemple commande de test à faire passer>
+Niveau : <léger|standard|approfondi>, <conséquence concrète, ex. « tests ciblés uniquement »>
+Autonomie : avance seul. Cherche ce qui manque (sources web du mois courant en priorité, datées). Hypothèse prudente et réversible plutôt que blocage.
 Autorisations accordées par l'utilisateur : <aucune | liste exacte, ex. « commit local »>
 Retour : format de rapport orkyn-protocol.
 ```
 
 - Utilise `subagent_type: orkyn:orkyn-<rôle>`.
 - **N'attribue pas de `name` à un appel Agent hors Agent Team** : quand les Agent Teams sont activées, un appel nommé crée un coéquipier au lieu d'un sous-agent.
-- `model` et `effort` par appel selon le mode (voir SKILL.md §2).
+- `model` et `effort` par appel selon le niveau choisi (voir SKILL.md §2).
 - N'utilise pas de fork (appel Agent sans `subagent_type`) pour un travail de spécialiste : un fork hérite de toute ta conversation et coûte plus cher.
 - Les sous-agents lancés depuis la session principale tournent en arrière-plan : tu es notifié à leur fin. Pour une tâche dépendante, attends cette notification. N'invente jamais un résultat en attente.
 
@@ -38,7 +40,7 @@ Retour : format de rapport orkyn-protocol.
 
 ## Validation finale
 
-- Tests pertinents : ceux qui couvrent le changement, puis la suite complète si elle est rapide ou si le mode est deep.
+- Tests pertinents : ceux qui couvrent le changement, puis la suite complète si elle est rapide ou si le niveau est approfondi.
 - Linter et typecheck s'ils existent dans le projet (scripts de `package.json`, `Makefile`, etc.).
 - Dans le rapport, sépare **vérifié** (commande exécutée + résultat observé) et **déclaré** (ce qu'un agent affirme sans que tu l'aies revérifié).
 

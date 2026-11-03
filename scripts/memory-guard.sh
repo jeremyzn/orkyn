@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # ORKYN : écriture de fichiers (Write|Edit|NotebookEdit) des agents orkyn-*, appelé par guard.sh.
 # Usage : memory-guard.sh <readonly|write> <nom-agent>   (entrée JSON du hook sur stdin)
-# Le dossier de mémoire d'un agent de plugin s'appelle orkyn-<nom-agent> (ex. orkyn-orkyn-qa) ; le nom nu reste admis.
+# Le dossier de mémoire d'un agent de plugin s'appelle orkyn-<nom-agent> (ex. orkyn-orkyn-qa). Le nom nu reste admis.
 #  - tous modes : bloque (exit 2) les fichiers de configuration (settings, .mcp.json, ~/.claude.json,
-#    tout ~/.claude/ hors la mémoire utilisateur de l'agent) et la mémoire des autres agents ;
-#  - tous modes : une écriture dans .claude/agent-memory-local/ garantit un .gitignore ("*") ;
-#  - readonly : n'autorise que la mémoire de l'agent et les dossiers temporaires ; fail-closed
-#    (exit 2) si l'entrée est illisible ;
+#    tout ~/.claude/ hors la mémoire utilisateur de l'agent) et la mémoire des autres agents.
+#  - tous modes : une écriture dans .claude/agent-memory-local/ garantit un .gitignore ("*").
+#  - readonly : n'autorise que la mémoire de l'agent et les dossiers temporaires. Fail-closed
+#    (exit 2) si l'entrée est illisible.
 #  - write : si l'entrée est illisible, laisse passer (les permissions Claude Code décident).
 # Filet de sécurité, pas une garantie : non garanti pour les coéquipiers d'Agent Team.
 mode="${1:-readonly}"
@@ -14,7 +14,7 @@ agent="${2:-}"
 
 fail() {
   [ "$mode" = "readonly" ] || exit 0
-  echo "ORKYN : écriture refusée (entrée du hook illisible ou parseur absent) — rôle en lecture seule." >&2
+  echo "ORKYN : écriture refusée (entrée du hook illisible ou parseur absent). Rôle en lecture seule." >&2
   exit 2
 }
 
@@ -58,7 +58,7 @@ lower=$(printf '%s' "$target" | tr '[:upper:]' '[:lower:]')
 homel=$(printf '%s' "$home" | tr '[:upper:]' '[:lower:]')
 
 block_config() {
-  echo "ORKYN : écriture refusée sur $target — fichier de configuration : action réservée au coordinateur après accord de l'utilisateur." >&2
+  echo "ORKYN : écriture refusée sur $target. Fichier de configuration : action réservée au coordinateur après accord de l'utilisateur." >&2
   exit 2
 }
 
@@ -74,7 +74,7 @@ case "$target" in
     exit 0 ;;
   */.claude/agent-memory/"$agent"/*|*/.claude/agent-memory/"orkyn-$agent"/*) exit 0 ;;
   */.claude/agent-memory/*|*/.claude/agent-memory-local/*)
-    echo "ORKYN : écriture refusée sur $target — mémoire d'un autre agent." >&2
+    echo "ORKYN : écriture refusée sur $target. Mémoire d'un autre agent." >&2
     exit 2 ;;
 esac
 
@@ -90,5 +90,5 @@ for t in "${TMPDIR:-}" "${TEMP:-}" "${TMP:-}"; do
   [ "$t" != "/" ] && [ "$t" != "$home" ] || continue
   case "$target" in "$t"/*) exit 0 ;; esac
 done
-echo "ORKYN : écriture refusée sur $target — cet agent est en lecture seule sur le projet (seule sa mémoire d'agent ou un dossier temporaire est autorisé). Décris la modification dans ton rapport." >&2
+echo "ORKYN : écriture refusée sur $target. Cet agent est en lecture seule sur le projet (seule sa mémoire d'agent ou un dossier temporaire est autorisé). Décris la modification dans ton rapport." >&2
 exit 2

@@ -1,4 +1,4 @@
-# ORKYN — Politique de mémoire
+# Politique de mémoire
 
 La mémoire ORKYN repose sur le champ natif `memory` des sous-agents. L'« adaptation » d'ORKYN, c'est la relecture de notes persistantes. Ce n'est pas un réentraînement du modèle.
 
@@ -20,7 +20,7 @@ Le dossier d'un agent de plugin est `<plugin>-<agent>` (vérifié : `orkyn-orkyn
 - Read, Write et Edit sont activés automatiquement pour gérer ce dossier.
 - Claude Code n'ajoute **pas** automatiquement `.claude/agent-memory-local/` au `.gitignore` (vérifié). Le garde-fou `memory-guard.sh` (appelé par `guard.sh`) crée `.claude/agent-memory-local/.gitignore` (contenu `*`) à la première écriture, et `context.sh` signale un dossier qui n'en a pas.
 - Le scope `project` (architect) crée `.claude/agent-memory/orkyn-orkyn-architect/` dans le dépôt de l'utilisateur : ce dossier est fait pour être versionné. Signale-le dans le rapport quand il est créé ou modifié.
-- Garde-fou : `memory-guard.sh <readonly|write> <agent>` (via `guard.sh`) n'autorise l'écriture que dans la mémoire de l'agent concerné (jamais celle d'un autre agent) et bloque les fichiers de configuration ; en readonly (architect, researcher, qa, reviewer) il bloque aussi tout hors des dossiers temporaires. C'est un filet : Bash reste techniquement capable d'écrire (la règle du prompt et `bash-guard.sh` couvrent ce cas).
+- Garde-fou : `memory-guard.sh <readonly|write> <agent>` (via `guard.sh`) n'autorise l'écriture que dans la mémoire de l'agent concerné (jamais celle d'un autre agent) et bloque les fichiers de configuration. En readonly (architect, researcher, qa, reviewer) il bloque aussi tout hors des dossiers temporaires. C'est un filet : Bash reste techniquement capable d'écrire (la règle du prompt et `bash-guard.sh` couvrent ce cas).
 - Le champ est sans effet si l'auto-mémoire est désactivée (`autoMemoryEnabled: false` ou `CLAUDE_CODE_DISABLE_AUTO_MEMORY`).
 - La mémoire n'est pas garantie pour les coéquipiers d'une Agent Team : le lead leur transmet les extraits utiles.
 

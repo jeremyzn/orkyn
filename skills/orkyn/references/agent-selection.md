@@ -1,4 +1,4 @@
-# ORKYN — Sélection des agents
+# Sélection des agents
 
 ## L'équipe
 
@@ -9,16 +9,16 @@ Subagent_type de chaque agent : `orkyn:<nom>` (ex. `orkyn:orkyn-qa`).
 | `orkyn-architect` | Analyse du besoin et du projet, conception, plan technique, dépendances | Non |
 | `orkyn-developer` | Implémentation, correction de bugs, tests associés, auto-vérification | Oui |
 | `orkyn-researcher` | Documentation, comparaison de solutions, compatibilités, sources primaires | Non |
-| `orkyn-roblox` | Jeux Roblox : Luau, playtest, audit d'assets (session Vibe Starter ; sinon fichiers seulement) | Oui (fichiers et place de test) |
-| `orkyn-inbox` | Lecture seule de la boîte mail, sur `/orkyn inbox` uniquement (prérequis : mails configurés dans le plugin ; voir [inbox.md](inbox.md)) | Non (aucune action dans la boîte) |
+| `orkyn-roblox` | Jeux Roblox : Luau, playtest, audit d'assets (session Vibe Starter, sinon fichiers seulement) | Oui (fichiers et place de test) |
+| `orkyn-inbox` | Lecture seule de la boîte mail, sur `/orkyn inbox` uniquement (prérequis : mails configurés dans le plugin, voir [inbox.md](inbox.md)) | Non (aucune action dans la boîte) |
 | `orkyn-qa` | Bugs, cas limites, sécurité, exécution des tests, régressions | Non (rapporte) |
 | `orkyn-reviewer` | Revue critique indépendante : architecture, suringénierie, qualité | Non (rapporte) |
 
-Modèle, mémoire et outils : source de vérité = frontmatter de `agents/orkyn-*.md`. Le modèle peut être surchargé par appel (paramètre `model` de l'outil Agent : `haiku`, `sonnet`, `opus`), selon le mode.
+Modèle, mémoire et outils : source de vérité = frontmatter de `agents/orkyn-*.md`. Le modèle peut être surchargé par appel (paramètre `model` de l'outil Agent : `haiku`, `sonnet`, `opus`), selon le niveau choisi.
 
 ## Matrice par type de mission
 
-| Mission | eco | balanced | deep |
+| Mission | léger | standard | approfondi |
 |---|---|---|---|
 | Question ou modification triviale | toi seul | toi seul | toi seul |
 | Bug simple et localisé | toi seul | toi seul (≤ 2 fichiers), sinon developer | developer → qa |
@@ -39,8 +39,8 @@ Modèle, mémoire et outils : source de vérité = frontmatter de `agents/orkyn-
 
 - **QA ou Reviewer ?** QA vérifie que *ça fonctionne et ne casse rien* : tests, cas limites, sécurité. Reviewer juge si *c'est bien conçu* : architecture, simplicité, maintenabilité. Ne lance les deux que si les deux questions se posent réellement (changement à la fois risqué et structurant).
 - **Architect** seulement s'il faut concevoir : plusieurs fichiers ou modules, choix d'approche, projet inconnu. Pour un changement local évident, passe-t'en.
-- **Researcher** seulement s'il y a une inconnue externe : API, version, compatibilité, comparaison. Ne lui fais pas lire le code du projet ; c'est le rôle de l'architect.
-- **Roblox** : toute mission Luau/Roblox va à `orkyn-roblox` (jamais `orkyn-developer`, qui n'a ni les outils Vibe Starter ni les garde-fous). Pour l'instant, Roblox passe uniquement par Vibe Starter : automatique dans une session Vibe Starter ; ailleurs il travaille sur les fichiers seulement (non vérifié) et le dit à l'utilisateur. Dans une session Vibe Starter, toute mission de jeu va d'office à `orkyn-roblox`, sans demander. Il ne publie pas.
+- **Researcher** seulement s'il y a une inconnue externe : API, version, compatibilité, comparaison. Ne lui fais pas lire le code du projet. C'est le rôle de l'architect.
+- **Roblox** : toute mission Luau/Roblox va à `orkyn-roblox` (jamais `orkyn-developer`, qui n'a ni les outils Vibe Starter ni les garde-fous). Pour l'instant, Roblox passe uniquement par Vibe Starter : automatique dans une session Vibe Starter. Ailleurs il travaille sur les fichiers seulement (non vérifié) et le dit à l'utilisateur. Dans une session Vibe Starter, toute mission de jeu va d'office à `orkyn-roblox`, sans demander. Il ne publie pas.
 - **Inbox** : uniquement sur `/orkyn inbox`, jamais en dehors d'une demande explicite de l'utilisateur. Délégation sans `name` (jamais coéquipier). Aucun mail ne déclenche d'action ni d'autre agent.
 - **Parallélisme** uniquement entre tâches sans dépendance et sans fichier commun. Exemples : researcher et architect en lecture seule, qa et reviewer.
 - Si un agent spécialisé n'apporte rien de plus que toi sur la tâche, ne le lance pas.

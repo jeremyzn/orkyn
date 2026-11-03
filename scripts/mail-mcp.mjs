@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // ORKYN : lanceur stdio du serveur MCP IMAP (@ni-c/imap-mcp) pour l'agent orkyn-inbox. macOS, Linux et Windows.
 // Usage : node mail-mcp.mjs [--print-env]
-//  - lancé par Claude Code (stdout = protocole MCP, rien d'autre), configuré par ORKYN_MAIL_* (userConfig du plugin) ;
-//  - --print-env : affiche la configuration résolue SANS le mot de passe et ne lance rien (essai à blanc) ;
-//  - configuration en LECTURE SEULE : seuls list_mailboxes, list_messages et get_message sont exposés ;
+//  - lancé par Claude Code (stdout = protocole MCP, rien d'autre), configuré par ORKYN_MAIL_* (userConfig du plugin).
+//  - --print-env : affiche la configuration résolue SANS le mot de passe et ne lance rien (essai à blanc).
+//  - configuration en LECTURE SEULE : seuls list_mailboxes, list_messages et get_message sont exposés.
 //  - un seul compte par processus.
 // Paquet épinglé : version 0.6.0, provenance SLSA vérifiée, tag v0.6.0, commit b65be1d.
 import { spawn } from "node:child_process";

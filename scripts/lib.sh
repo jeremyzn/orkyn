@@ -7,8 +7,8 @@
 # Code retour : 0 si le JSON est un objet lisible, 1 sinon (JSON invalide ou aucun lecteur disponible).
 # Lecteurs essayés dans l'ordre : jq, python3, perl (JSON::PP, livré avec macOS et Git pour Windows), node,
 # puis « awk » : lecteur de secours en awk POSIX seul (aucune dépendance), limité à ce que lisent les
-# garde-fous (chaînes, échappements courants ; \uXXXX non ASCII remplacé par ?).
-# ORKYN_JSON_PARSER=<jq|python3|perl|node|awk> force un lecteur (tests) ; une autre valeur = aucun lecteur.
+# garde-fous (chaînes, échappements courants, \uXXXX non ASCII remplacé par ?).
+# ORKYN_JSON_PARSER=<jq|python3|perl|node|awk> force un lecteur (tests). Une autre valeur = aucun lecteur.
 #
 # is_windows                        → vrai sous Git Bash / MSYS / Cygwin.
 # to_unix_path <chemin>             → C:\Users\x ou C:/Users/x → /c/Users/x (inchangé ailleurs).
@@ -103,7 +103,7 @@ process.stdin.on("data", c => raw += c).on("end", () => {
       command -v awk >/dev/null 2>&1 || return 1
       printf '%s' "$json" | awk -v kind="$kind" -v want="$(IFS=.; printf '%s' "$*")" '
 function hex(c) { return index("0123456789abcdef", tolower(c)) - 1 }
-# Lit la chaîne dont le guillemet ouvrant est en position i ; résultat dans str, position suivante dans i.
+# Lit la chaîne dont le guillemet ouvrant est en position i. Résultat dans str, position suivante dans i.
 function readstr(   out, c, e, n, k) {
   i++; out = ""
   while (i <= len) {

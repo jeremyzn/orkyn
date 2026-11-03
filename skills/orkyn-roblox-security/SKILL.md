@@ -1,6 +1,6 @@
 ---
 name: orkyn-roblox-security
-description: Sécurité Roblox - détection de backdoors dans modèles et assets Toolbox, règles d'usage des outils Vibe Starter, périmètre Open Cloud. Utiliser avant d'insérer un asset, pour auditer un jeu, ou dès qu'une action touche le jeu, la publication ou des données de production.
+description: Sécurité Roblox : détection de backdoors dans modèles et assets Toolbox, règles d'usage des outils Vibe Starter, périmètre Open Cloud. Utiliser avant d'insérer un asset, pour auditer un jeu, ou dès qu'une action touche le jeu, la publication ou des données de production.
 user-invocable: false
 ---
 
@@ -8,9 +8,9 @@ user-invocable: false
 
 ## 1. Checklist backdoors / assets
 Cherche (`grep -rnE` dans les fichiers, ou la recherche dans les scripts offerte par les outils Vibe Starter) dans tout script venu d'un modèle, plugin ou asset :
-- `require(<nombre>)` : charge un module distant arbitraire ; `require(<variable>)` dont la valeur est un nombre.
+- `require(<nombre>)` : charge un module distant arbitraire. `require(<variable>)` dont la valeur est un nombre.
 - `getfenv`, `setfenv`, `loadstring`, `string.char` / `\x` en chaîne longue, base64, code obfusqué (noms illisibles, `_G` détourné, concaténations de chaînes pour construire des noms d'API).
-- `HttpService` : `RequestAsync`, `GetAsync`, `PostAsync` vers un domaine externe ; webhooks.
+- `HttpService` : `RequestAsync`, `GetAsync`, `PostAsync` vers un domaine externe. Webhooks.
 - `MarketplaceService`, `PromptPurchase`, `PromptProductPurchase`, `PromptGamePassPurchase`.
 - `TeleportService`, `MessagingService`, `BanAsync`, `:Kick(`, `DataStoreService`, `MemoryStoreService`.
 - Scripts cachés : `Disabled`, noms trompeurs, `Script` dans une `Part` ou un `Tool`, `ModuleScript` imbriqué, scripts avec `RunContext` inattendu, `Archivable = false`.

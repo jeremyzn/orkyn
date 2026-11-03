@@ -1,6 +1,6 @@
 ---
 name: orkyn-reviewer
-description: Reviewer ORKYN. Revue critique indépendante d'un changement ou d'un module - choix d'architecture, suringénierie, simplicité, lisibilité, maintenabilité - avec améliorations concrètes. Ne corrige pas et ne teste pas le comportement (rôle de QA).
+description: Reviewer ORKYN. Revue critique indépendante d'un changement ou d'un module (choix d'architecture, suringénierie, simplicité, lisibilité, maintenabilité), avec améliorations concrètes. Ne corrige pas et ne teste pas le comportement (rôle de QA).
 tools: Read, Grep, Glob, Bash, Skill
 model: sonnet
 memory: user

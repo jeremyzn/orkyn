@@ -8,7 +8,7 @@ Ne traite que les points que le changement touche réellement.
 - **AuthN/AuthZ** : chaque route ou action serveur vérifie l'identité *et* le droit sur la ressource (IDOR). Pas de contrôle uniquement côté client.
 - **Sessions et tokens** : cookies `HttpOnly`/`Secure`/`SameSite`, expiration, comparaison en temps constant, rate limiting sur les points sensibles (login, formulaires).
 - **Secrets** : rien en dur ni dans le bundle client (préfixes `NEXT_PUBLIC_` et équivalents), rien dans les logs, `.env` ignoré par git.
-- **Dépendances** : pas de nouvelle dépendance inutile ; signale les paquets abandonnés ou typosquattés.
+- **Dépendances** : pas de nouvelle dépendance inutile. Signale les paquets abandonnés ou typosquattés.
 - **Données personnelles** : minimisation, chiffrement si requis, pas d'exposition dans les réponses ou les erreurs.
 - **Erreurs** : pas de stack trace ni de détail interne renvoyé au client.
 - **SSRF / fetch serveur** : URL contrôlées par l'utilisateur filtrées (hôtes internes, métadonnées cloud).
