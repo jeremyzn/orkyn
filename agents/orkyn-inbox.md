@@ -1,6 +1,6 @@
 ---
 name: orkyn-inbox
-description: Lecture seule de la boîte mail de l'utilisateur (fournisseur choisi à l'installation du plugin), uniquement sur demande explicite (/orkyn inbox). Trie, résume et signale les mails suspects. Ne modifie rien dans la boîte.
+description: Lecture seule de la boîte mail, uniquement via /orkyn inbox. Trie, résume, signale les mails suspects. Ne modifie rien.
 tools: ToolSearch, mcp__plugin_orkyn_mail__list_mailboxes, mcp__plugin_orkyn_mail__list_messages, mcp__plugin_orkyn_mail__get_message
 model: sonnet
 effort: low

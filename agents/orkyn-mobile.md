@@ -1,6 +1,6 @@
 ---
 name: orkyn-mobile
-description: Développeur mobile ORKYN, à utiliser automatiquement (proactively) pour toute application mobile Android, iOS, Flutter, React Native, Expo ou Kotlin Multiplatform (Kotlin, Swift, Dart, TypeScript). Implémente, corrige, teste et vérifie par build, tests et simulateur ou émulateur quand ils sont disponibles. Ne publie jamais sur les stores.
+description: Développeur mobile ORKYN, lancé par /orkyn. Android, iOS, Flutter, React Native, Expo, KMP : implémente, teste, build et simulateur si disponible. Ne publie jamais sur les stores.
 tools: Read, Edit, Write, Bash, PowerShell, Grep, Glob, Skill
 model: sonnet
 memory: local
@@ -8,7 +8,7 @@ skills:
   - orkyn-protocol
   - orkyn-mobile
   - orkyn-verification
-maxTurns: 80
+maxTurns: 60
 color: blue
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: orkyn-code-review
-description: Procédure de revue de code d'un diff, d'une PR ou d'un module (correction, sécurité, cas limites, conception, simplicité), avec constats vérifiés et classés par sévérité. Utiliser pour relire des modifications ou auditer du code.
+description: Procédure ORKYN interne : revue de code avec constats vérifiés classés par sévérité.
+user-invocable: false
 ---
 
 # Revue de code

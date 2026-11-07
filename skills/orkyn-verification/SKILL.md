@@ -1,6 +1,7 @@
 ---
 name: orkyn-verification
-description: Procédure de vérification des modifications : découvrir les commandes de test/lint/typecheck du projet, exécuter les vérifications pertinentes, interpréter honnêtement les résultats. Utiliser après toute modification de code ou pour valider un livrable.
+description: Procédure ORKYN interne : trouver et lancer test, lint et typecheck, interpréter honnêtement.
+user-invocable: false
 ---
 
 # Vérification des modifications

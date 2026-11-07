@@ -1,6 +1,7 @@
 ---
 name: orkyn-research
-description: Procédure de recherche technique : sources primaires, comparaison de solutions, vérification de compatibilité et de versions, niveau de certitude explicite. Utiliser pour une question sur une API, une bibliothèque, une version ou un choix technologique.
+description: Procédure ORKYN interne : recherche technique sur sources primaires avec niveau de certitude.
+user-invocable: false
 ---
 
 # Recherche technique

@@ -2,7 +2,7 @@
 
 ORKYN est une équipe d'assistants pour Claude Code. Vous dites ce que vous voulez avec vos mots, et ORKYN s'occupe du reste : il choisit les bons assistants, fait le travail, le vérifie et vous explique ce qui a été fait.
 
-Il sait aussi créer des applications mobiles, chercher et corriger les failles de sécurité de votre projet, créer des jeux Roblox et lire votre boîte mail sans jamais rien y modifier.
+Il sait aussi créer des applications mobiles, chercher et corriger les failles de sécurité de votre projet et lire votre boîte mail sans jamais rien y modifier.
 
 ORKYN fonctionne sur Mac, sur Windows et sur Linux.
 
@@ -39,6 +39,8 @@ Pour décider quoi faire seul, il passe chaque tâche à trois filtres : est-ce 
 
 Il n'y a rien à régler : pour chaque demande, ORKYN décide lui-même s'il faut aller vite ou y passer plus de temps, selon la taille et les risques de la tâche. Tapez /orkyn aide pour voir ce que sait faire ORKYN.
 
+ORKYN est aussi économe : il fait lui-même les petites tâches au lieu de lancer des assistants, ne lit que ce qui est utile et écrit des comptes rendus courts. Vos limites Claude durent ainsi plus longtemps.
+
 ## Applications mobiles
 
 ORKYN crée et corrige des applications pour Android et iPhone, quelle que soit la technologie de votre projet : Kotlin, Swift, Flutter, React Native ou Expo. Il la reconnaît tout seul.
@@ -58,16 +60,6 @@ Vous n'avez pas besoin de le demander à chaque fois : dès qu'une modification 
 Il utilise les outils de détection installés sur votre ordinateur s'il y en a, et fait une relecture attentive sinon. Il ne lit jamais la valeur de vos mots de passe et de vos clés, et n'envoie jamais votre code à un service extérieur.
 
 Si une clé secrète a été publiée par erreur, ORKYN la retire du code, mais il faudra aussi la changer chez le service concerné : il vous dira laquelle et comment.
-
-## Jeux Roblox
-
-Vous n'avez rien de spécial à faire : parlez simplement de votre jeu Roblox, ORKYN s'en charge. Il écrit le code, lance le jeu pour le tester, corrige ce qui ne va pas et recommence jusqu'à ce que ça marche.
-
-Pour l'instant, les jeux Roblox se font dans Vibe Starter. Installez ORKYN avec les deux commandes ci-dessus, puis demandez ce que vous voulez : tout est automatique, vous n'avez rien à régler.
-
-En dehors de Vibe Starter, ORKYN peut écrire le code de votre jeu, mais il ne peut pas le lancer pour le tester.
-
-ORKYN ne publie jamais votre jeu et ne touche pas à l'argent sans votre accord. Il vous demande aussi avant de dépenser des crédits ou d'ajouter un objet téléchargé depuis la boutique Roblox.
 
 ## Lire vos mails
 

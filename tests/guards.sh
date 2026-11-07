@@ -139,15 +139,6 @@ for P in jq python3 perl node awk; do
   t 2 mcp "inbox delete" "$(m orkyn:orkyn-inbox mcp__plugin_orkyn_mail__delete_message)"
   t 2 mcp "dev mail" "$(m orkyn:orkyn-developer mcp__plugin_orkyn_mail__list_messages)"
   t 2 mcp "outil orkyn inconnu" "$(m orkyn:orkyn-inbox mcp__plugin_orkyn_x__y)"
-  # Vibe Starter
-  t 0 vibestarter "session principale" "$(m '' mcp__vibestarter_mcp__run_code '{"code":"DataStoreService"}')"
-  t 2 vibestarter "dev vibestarter" "$(m orkyn:orkyn-developer mcp__vibestarter_mcp__run_code)"
-  t 0 vibestarter "roblox run_code sûr" "$(m orkyn:orkyn-roblox mcp__vibestarter_mcp__run_code '{"code":"print(1)"}')"
-  t 2 vibestarter "roblox DataStore" "$(m orkyn:orkyn-roblox mcp__vibestarter_mcp__run_code '{"code":"game:GetService(\"DataStoreService\")"}')"
-  t 2 vibestarter "roblox loadstring imbriqué" "$(m orkyn:orkyn-roblox mcp__vibestarter_mcp__x '{"a":{"b":["loadstring(s)"]}}')"
-  t 2 vibestarter "roblox require(id)" "$(m orkyn:orkyn-roblox mcp__vibestarter_mcp__x '{"c":"require( 123)"}')"
-  t ask vibestarter "roblox publish" "$(m orkyn:orkyn-roblox mcp__vibestarter_mcp__publish_place)"
-  t ask vibestarter "roblox generate_" "$(m orkyn:orkyn-roblox mcp__vibestarter_mcp__generate_model)"
   # Entrée illisible
   t 2 mcp "mcp JSON invalide" 'pas du json'
   t 2 bash "qa JSON invalide" '{"agent_type":"orkyn:orkyn-qa", cassé'

@@ -1,13 +1,14 @@
 ---
 name: orkyn-reviewer
-description: Reviewer ORKYN. Revue critique indépendante d'un changement ou d'un module (choix d'architecture, suringénierie, simplicité, lisibilité, maintenabilité), avec améliorations concrètes. Ne corrige pas et ne teste pas le comportement (rôle de QA).
+description: Reviewer ORKYN, lancé par /orkyn. Revue indépendante de conception, simplicité et maintenabilité, avec améliorations concrètes. Ne corrige pas.
 tools: Read, Grep, Glob, Bash, Skill
 model: sonnet
+effort: medium
 memory: user
 skills:
   - orkyn-protocol
   - orkyn-code-review
-maxTurns: 25
+maxTurns: 20
 color: yellow
 ---
 

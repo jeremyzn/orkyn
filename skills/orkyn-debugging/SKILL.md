@@ -1,6 +1,7 @@
 ---
 name: orkyn-debugging
-description: Procédure de débogage méthodique : reproduire, isoler, identifier la cause racine, corriger minimalement, prouver la correction par un test. Utiliser pour tout bug, erreur, test en échec ou comportement inattendu.
+description: Procédure ORKYN interne : reproduire, isoler, cause racine, correction minimale prouvée par un test.
+user-invocable: false
 ---
 
 # Débogage méthodique

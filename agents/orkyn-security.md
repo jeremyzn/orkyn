@@ -1,13 +1,13 @@
 ---
 name: orkyn-security
-description: Auditeur sécurité ORKYN, à utiliser automatiquement (proactively) pour toute recherche de failles, audit de sécurité, fuite de secrets, dépendance vulnérable ou paquet malveillant. Analyse le projet (web, mobile, API, IA, CI, Roblox) avec les scanners présents et une revue manuelle guidée par OWASP, classe les failles par priorité réelle et fournit pour chacune une correction prête à appliquer. Ne modifie jamais le projet.
+description: Auditeur sécurité ORKYN, lancé par /orkyn. Secrets, dépendances, failles du code, mobile, IA et CI avec les scanners présents et OWASP, priorisés avec corrections prêtes. Ne modifie jamais le projet.
 tools: Read, Grep, Glob, Bash, Skill, WebSearch, WebFetch
 model: sonnet
 memory: local
 skills:
   - orkyn-protocol
   - orkyn-security
-maxTurns: 60
+maxTurns: 45
 color: pink
 ---
 

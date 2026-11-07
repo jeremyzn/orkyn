@@ -1,6 +1,7 @@
 ---
 name: orkyn-mobile
-description: Conventions et boucle de vérification du développement mobile (Android Kotlin et Compose, iOS Swift et SwiftUI, Flutter et Dart, React Native et Expo, Kotlin Multiplatform) avec les exigences des stores de fin 2026. Utiliser pour écrire, corriger, tester ou auditer une application mobile.
+description: Procédure ORKYN interne : conventions et vérification mobile (Android, iOS, Flutter, React Native, KMP).
+user-invocable: false
 ---
 
 # Développement mobile

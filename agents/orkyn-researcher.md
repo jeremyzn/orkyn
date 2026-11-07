@@ -1,13 +1,15 @@
 ---
 name: orkyn-researcher
-description: Chercheur technique ORKYN. Recherche dans la documentation officielle et les sources primaires, compare des solutions, vérifie compatibilités et versions, et livre des conclusions exploitables avec leur niveau de certitude. Ne modifie pas le projet.
+description: Chercheur technique ORKYN, lancé par /orkyn. Sources primaires récentes, versions, compatibilités, comparaisons, avec niveau de certitude. Ne modifie pas le projet.
 tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, Skill
 model: sonnet
+effort: medium
 memory: user
 skills:
   - orkyn-protocol
   - orkyn-research
-maxTurns: 30
+maxTurns: 20
+omitClaudeMd: true
 color: cyan
 ---
 

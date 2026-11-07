@@ -91,11 +91,6 @@ for t in node npm pnpm bun python3 go cargo java flutter dart xcodebuild swift a
   command -v "$t" >/dev/null 2>&1 && tools="$tools $t"
 done
 echo "- Outils présents :${tools:- aucun}"
-if [ -n "${VIBESTARTER_AGENT_TYPE:-}" ] || [ -n "${VIBESTARTER_PROJECT_PATH:-}" ]; then
-  echo "- Vibe Starter : session détectée, MCP vibestarter_mcp disponible, utiliser orkyn:orkyn-roblox"
-else
-  echo "- Vibe Starter : non détecté"
-fi
 if is_windows; then os=Windows; elif [ "$(uname -s)" = Darwin ]; then os=macOS; else os=Linux; fi
 echo "- Système : $os"
 

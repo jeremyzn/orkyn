@@ -1,6 +1,7 @@
 ---
 name: orkyn-security
-description: Procédure d'audit de sécurité automatique d'un projet ou d'un diff (secrets, dépendances vulnérables ou malveillantes, failles du code, mobile, IA, configuration et CI) avec scanners en ligne de commande, revue OWASP 2025, priorisation KEV, EPSS et CVSS, et corrections prêtes à appliquer. Utiliser pour tout audit, recherche de failles ou vérification de sécurité.
+description: Procédure ORKYN interne : audit de sécurité (secrets, dépendances, code, mobile, IA, CI) et corrections.
+user-invocable: false
 ---
 
 # Audit de sécurité
@@ -21,7 +22,6 @@ Pour chaque couche : l'outil s'il est présent (commandes dans [references/tools
 4. **Mobile** (si détecté) : checklist MASVS de [references/standards.md](references/standards.md).
 5. **IA et agents** (si le projet appelle un modèle, expose des outils ou un serveur MCP) : checklist LLM et agents de [references/standards.md](references/standards.md).
 6. **Configuration et CI** : Trivy config ou Checkov (IaC, Kubernetes), hadolint (Dockerfile), zizmor et actionlint (`.github/workflows`). À défaut, revue manuelle : `pull_request_target`, `${{ github.event.* }}` dans un `run:`, actions non épinglées par SHA, permissions trop larges, secrets dans les logs.
-7. **Roblox** (si détecté) : invoque `orkyn-roblox-security`.
 
 ## 3. Valider chaque constat
 - Ouvre le fichier et la ligne. Un résultat de scanner non relu n'est pas un constat.

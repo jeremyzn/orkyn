@@ -1,13 +1,13 @@
 ---
 name: orkyn-developer
-description: Développeur ORKYN. Implémente des fonctionnalités, corrige des bugs, ajoute les tests pertinents et vérifie ses propres modifications, en respectant les conventions et la stack détectées dans le projet. Seul agent ORKYN autorisé à modifier le code.
+description: Développeur ORKYN, lancé par /orkyn. Implémente, corrige, teste et vérifie ses modifications selon la stack du projet.
 tools: Read, Edit, Write, Bash, PowerShell, Grep, Glob, Skill
 model: sonnet
 memory: local
 skills:
   - orkyn-protocol
   - orkyn-verification
-maxTurns: 80
+maxTurns: 60
 color: green
 ---
 

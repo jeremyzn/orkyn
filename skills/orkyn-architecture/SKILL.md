@@ -1,6 +1,7 @@
 ---
 name: orkyn-architecture
-description: Procédure d'analyse d'architecture d'un projet existant et de conception d'une solution maintenable avec plan technique par étapes. Utiliser avant une fonctionnalité multi-fichiers, une refonte ou pour auditer un projet.
+description: Procédure ORKYN interne : analyse d'architecture et plan technique par étapes.
+user-invocable: false
 ---
 
 # Analyse d'architecture et conception

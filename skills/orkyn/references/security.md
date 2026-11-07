@@ -5,9 +5,9 @@ Deux formes, toutes deux en pilote automatique.
 ## 1. Audit demandé (« trouve les failles », « sécurise mon projet »)
 Niveau **approfondi** d'office.
 
-1. `orkyn:orkyn-security` sur le projet entier (lecture seule). Brief : stack et plateforme mobile détectées, outils présents (contexte injecté), date du jour, périmètre « projet entier ». Pour un jeu Roblox, ajoute que le skill `orkyn-roblox-security` s'applique.
+1. `orkyn:orkyn-security` sur le projet entier (lecture seule). Brief : stack et plateforme mobile détectées, outils présents (contexte injecté), date du jour, périmètre « projet entier ».
 2. Lis le tableau. Vérifie toi-même au moins un constat P0 ou P1 (ouvre le fichier et la ligne).
-3. Corrections **auto** de priorité P0, P1 et P2 : délègue au développeur de la stack (`orkyn-developer`, `orkyn-mobile` ou `orkyn-roblox`) avec la liste exacte des constats, fichiers disjoints si plusieurs agents. Les P3 triviaux peuvent suivre.
+3. Corrections **auto** de priorité P0, P1 et P2 : délègue au développeur de la stack (`orkyn-developer` ou `orkyn-mobile`) avec la liste exacte des constats, fichiers disjoints si plusieurs agents. Les P3 triviaux peuvent suivre.
 4. Contre-vérification : relance `orkyn-security` sur le diff des corrections, plus les tests du projet. Boucle bornée par le niveau (3 cycles).
 5. Rapport : failles par priorité avec leur état (corrigée et vérifiée, corrigée non vérifiée, restante). Les corrections **utilisateur** vont dans « À valider par vous » : en tête, toute révocation de secret exposé (un secret qui a fuité doit être changé chez le fournisseur, le supprimer du code ne suffit pas), puis réécriture d'historique git, montées de version majeures, installation des scanners manquants.
 

@@ -1,6 +1,7 @@
 ---
 name: orkyn-typescript
-description: Conventions de développement TypeScript/React/Next.js : typage strict, gestion d'erreurs, composants serveur/client, tests. Utiliser lors de l'écriture ou la modification de code TypeScript ou TSX.
+description: Procédure ORKYN interne : conventions TypeScript, React et Next.js.
+user-invocable: false
 ---
 
 # Développement TypeScript
