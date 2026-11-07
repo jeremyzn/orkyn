@@ -15,6 +15,9 @@ Une seule commande : /orkyn suivi de ce que vous voulez, avec vos mots.
   /orkyn trouve les failles de mon projet       Audit de sécurité et corrections
   /orkyn ajoute un écran de profil à mon appli  Android, iOS, Flutter, React Native, Expo
   /orkyn lis mes mails                          Boîte mail en lecture seule
+  /orkyn veille                                 Failles, mises à jour, CI, stores
+  /orkyn:audit  /orkyn:revue                    À fond : plusieurs agents, chaque problème vérifié
+  /orkyn-panneau  /orkyn-budget 200k            Tableau de bord, budget de tokens par mission
   /orkyn état                                   Équipe, mémoire, projet détecté
   /orkyn aide                                   Cette aide
 
@@ -23,7 +26,8 @@ Pilote automatique : aucune question pendant le travail. Les actions importantes
 pour votre accord.
 Sécurité : passe automatique à chaque changement sensible
 Niveau : léger, standard ou approfondi, choisi automatiquement pour chaque mission
-Sobriété : le moins d'agents et de tokens possible, l'équipe n'est lancée que si elle rapporte plus qu'elle ne coûte
+Sobriété : le moins d'agents et de tokens possible, budget par mission (léger 60 k, standard 300 k, approfondi 1 M)
+Automatique : carte du projet en cache, pas de fin sans vérification, CI surveillée, notification de fin
 Mails : fournisseur, adresse et mot de passe d'application à renseigner dans la configuration du plugin (README)
 Natif : /agents (gérer les agents) · /tasks (agents en cours) · /memory
 ```

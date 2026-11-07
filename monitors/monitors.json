@@ -1,0 +1,8 @@
+[
+  {
+    "name": "ci",
+    "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/ci-watch.sh\"",
+    "description": "ORKYN : échecs et retours au vert de la CI GitHub de la branche courante",
+    "when": "on-skill-invoke:orkyn"
+  }
+]

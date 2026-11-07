@@ -15,6 +15,7 @@ Critères de réussite : <comment on saura que c'est fait, par exemple commande 
 Niveau : <léger|standard|approfondi>, <conséquence concrète, ex. « tests ciblés uniquement »>
 Autonomie : pilote automatique, aucune question. Cherche ce qui manque (sources web du mois courant en priorité, datées). Hypothèse prudente et réversible plutôt que blocage. Action réservée : prépare la commande et rapporte la.
 Outils présents : <liste du contexte injecté, utile aux agents mobile et security>
+Commandes du projet : <ligne « Commandes du projet » du contexte injecté, pour ne pas les rechercher>
 Autorisations accordées par l'utilisateur : <aucune | liste exacte, ex. « commit local »>
 Déjà fait : <ce que tu as lu ou vérifié, pour qu'il ne le refasse pas>
 Retour : format de rapport orkyn-protocol, 250 mots max, sans recopier de code ni de logs.

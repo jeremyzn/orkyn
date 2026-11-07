@@ -41,6 +41,29 @@ Il n'y a rien à régler : pour chaque demande, ORKYN décide lui-même s'il fau
 
 ORKYN est aussi économe : il fait lui-même les petites tâches au lieu de lancer des assistants, ne lit que ce qui est utile et écrit des comptes rendus courts. Vos limites Claude durent ainsi plus longtemps.
 
+## Tableau de bord et budget
+
+Dès que vous tapez /orkyn, un panneau s'ouvre à côté de la conversation (si votre fenêtre est assez large, sinon tapez /orkyn-panneau). Il affiche la mission en cours, le niveau choisi, les tokens consommés par ORKYN et par chacun de ses assistants, et une barre de budget.
+
+Chaque mission a un budget de tokens : 60 000 pour une petite demande, 300 000 pour une demande moyenne, 1 million pour une grosse. À 80 %, ORKYN est prévenu et termine sans ouvrir de nouveau chantier. À 100 %, il conclut et ne peut plus lancer d'assistant. Pour changer le budget : /orkyn-budget 500k, ou /orkyn-budget auto pour revenir aux valeurs par défaut.
+
+Quand ORKYN attend votre accord, des boutons « ok 1 », « ok tout » et « non » apparaissent dans le panneau : un clic suffit.
+
+## Tout ce qu'ORKYN fait seul
+
+- Il retient les commandes de test et de vérification de votre projet, pour ne pas les rechercher à chaque fois.
+- Il ne peut pas annoncer qu'il a fini s'il a modifié du code sans le vérifier ensuite.
+- Après un /orkyn, il surveille votre intégration continue GitHub (si l'outil gh est installé et connecté) et réagit si elle passe au rouge.
+- Si vous utilisez l'application Claude sur votre téléphone, il vous envoie une notification quand une longue mission se termine ou attend votre accord.
+
+## Veille
+
+Tapez /orkyn veille : ORKYN cherche les failles connues dans vos composants, les mises à jour importantes, l'état de votre intégration continue et, pour une application mobile, les nouvelles règles des stores. Il corrige ce qui peut l'être sans risque et vous présente le reste. Demandez « fais la veille chaque semaine » : il vous prépare la ligne à taper pour la programmer.
+
+## À fond
+
+Pour un audit de sécurité ou une relecture vraiment approfondis, tapez /orkyn:audit ou /orkyn:revue. Plusieurs assistants travaillent en parallèle et chaque problème trouvé est contre-vérifié par un autre avant de vous être présenté. C'est plus long et plus coûteux : à réserver aux moments importants.
+
 ## Applications mobiles
 
 ORKYN crée et corrige des applications pour Android et iPhone, quelle que soit la technologie de votre projet : Kotlin, Swift, Flutter, React Native ou Expo. Il la reconnaît tout seul.

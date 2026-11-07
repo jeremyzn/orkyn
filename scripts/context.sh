@@ -54,14 +54,14 @@ stack=""
 for m in package.json tsconfig.json next.config.js next.config.mjs next.config.ts pnpm-lock.yaml yarn.lock bun.lockb bun.lock \
          pyproject.toml requirements.txt Cargo.toml go.mod Gemfile composer.json pom.xml build.gradle Package.swift \
          Dockerfile docker-compose.yml Makefile deno.json \
-         pubspec.yaml settings.gradle settings.gradle.kts build.gradle.kts gradle/libs.versions.toml Podfile app.json eas.json \
-         default.project.json rokit.toml aftman.toml wally.toml pesde.toml selene.toml stylua.toml; do
+         pubspec.yaml settings.gradle settings.gradle.kts build.gradle.kts gradle/libs.versions.toml Podfile app.json eas.json; do
   [ -e "$proj/$m" ] && stack="$stack $m"
 done
-for m in "$proj"/*.xcodeproj "$proj"/*.project.json "$proj"/*.rbxl "$proj"/*.rbxlx; do
-  [ -e "$m" ] && [ "$(basename "$m")" != "default.project.json" ] && stack="$stack $(basename "$m")"
+for m in "$proj"/*.xcodeproj; do
+  [ -e "$m" ] && stack="$stack $(basename "$m")"
 done
 echo "- Marqueurs de stack :${stack:- aucun}"
+[ "$at_home" = 1 ] || bash "$root/scripts/project-map.sh" "$proj" "${1:-}"
 
 # Plateformes mobiles (racine et sous-dossiers usuels d'un monorepo)
 mob=""
