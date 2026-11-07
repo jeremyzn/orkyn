@@ -1,5 +1,6 @@
 {
   "name": "orkyn",
+  "version": "1.0.0",
   "description": "Équipe d’agents autonome pour Claude Code, une seule commande : code, applications mobiles (Kotlin, Swift, Flutter, React Native), audit de sécurité et mails en lecture seule, sobre en tokens, avec garde-fous.",
   "author": { "name": "jeremyzn" },
   "license": "MIT",
